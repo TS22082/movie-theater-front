@@ -7,7 +7,16 @@ import Footer from './components/Footer.js'
 
 class App extends Component {
   zipcodeSubmitted( zipCode ) {
-    fetch( 'http://localhost:3002/theaters/' + zipCode, {} )
+    const url = `http://localhost:3002/theaters/${zipCode}`
+    const options = {
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }
+
+    fetch( url, options )
       .then( response => response.json() )
       .then( json => console.log( json ))
       .catch( error => console.log( error ))

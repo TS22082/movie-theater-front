@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import GoogleMapsLoader from 'google-maps'
 
+GoogleMapsLoader.KEY = 'TODO: OUR API KEY GOES HERE'
+
 class Main extends Component {
   componentDidMount() {
     const element = document.querySelector( '.map' )
