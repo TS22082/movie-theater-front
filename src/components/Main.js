@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GoogleMapsLoader from 'google-maps'
 
-GoogleMapsLoader.KEY = 'TODO: OUR API KEY GOES HERE'
+GoogleMapsLoader.KEY = 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
 
 class Main extends Component {
   componentDidMount() {

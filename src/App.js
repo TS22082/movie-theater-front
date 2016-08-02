@@ -6,7 +6,8 @@ import Main from './components/Main.js'
 import Footer from './components/Footer.js'
 
 class App extends Component {
-  zipcodeSubmitted( zipCode ) {
+  zipcodeSubmitted( zipCode ) { 
+    console.log(zipCode)
     const url = `http://localhost:3002/theaters/${zipCode}`
     const options = {
       mode: 'cors',
