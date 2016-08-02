@@ -20,8 +20,10 @@ class ZipcodeForm extends Component {
   render() {
     return (
       <div className="zipcode-form">
-        <input type="text" onKeyUp={this.onTextEntered.bind(this)} />
-        <button onClick={this.clicked.bind(this)}>Go</button>
+        <input className= "form_box" type="text" onKeyUp={this.onTextEntered.bind(this)} />
+        <button className="btn_zip" onClick={this.clicked.bind(this)}>Go</button>
+        <button className="toggle_map" onClick={this.clicked.bind(this)}>Map</button>
+        <button className="toggle_list" onClick={this.clicked.bind(this)}>List</button>
       </div>
     )
   }
