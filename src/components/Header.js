@@ -8,6 +8,7 @@ class Header extends Component {
       <div className="header">
         <ZipcodeForm onZipCode={this.props.onZipCode} />
       </div>
+
     )
   }
 }

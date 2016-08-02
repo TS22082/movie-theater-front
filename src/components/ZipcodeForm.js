@@ -5,8 +5,7 @@ class ZipcodeForm extends Component {
     super()
 
     this.data = {
-      text: '',
-      counter: 1
+      text: ''
     }
   }
 
@@ -15,13 +14,13 @@ class ZipcodeForm extends Component {
   }
 
   onTextEntered( event ) {
-    this.data.text = this.data.counter++
+    this.data.text = event.target.value
   }
 
   render() {
     return (
       <div className="zipcode-form">
-        <input type="text" onKeyDown={this.onTextEntered.bind(this)} />
+        <input type="text" onKeyUp={this.onTextEntered.bind(this)} />
         <button onClick={this.clicked.bind(this)}>Go</button>
       </div>
     )
