@@ -23,7 +23,7 @@ When I click on trailer it would toggle a window that would play the video from 
 - [ ] Be able to see the list of the movies of specified theater
 - [ ] Theater detail page lists theater information (name and address) and movie listings
 - [ ] Movie listing includes title, rating, genres, runtime, imdb link if available, trailer link if available, showtimes for today (link to purchase site if link available)
-- [ ] Clicking on trailer link (when available) shows trailer modal (if embeddable) 
+- [ ] Clicking on trailer link (when available) shows trailer modal (if embeddable)
 - [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 
