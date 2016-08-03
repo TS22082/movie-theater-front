@@ -23,7 +23,9 @@ class Main extends Component {
 
     GoogleMapsLoader.load( google => { 
       const map = new google.maps.Map( element, options )
+
       console.log(this.props.theaters)
+      
       this.props.theaters.forEach( theater => {
         const infoWindow = new google.maps.InfoWindow({
         content: 'Name: ' + theater.name + 
