@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GoogleMapsLoader from 'google-maps'
 
-GoogleMapsLoader.KEY = 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
+GoogleMapsLoader.KEY = 'AIzaSyAM7VdvORTJeo8DihlqK4wT1dHCF6m2VpY'
 
 class Main extends Component {
   componentDidMount() {
@@ -23,10 +23,12 @@ class Main extends Component {
 
     GoogleMapsLoader.load( google => { 
       const map = new google.maps.Map( element, options )
-
+      console.log(this.props.theaters)
       this.props.theaters.forEach( theater => {
         const infoWindow = new google.maps.InfoWindow({
-          content: theater.address
+        content: 'Name: ' + theater.name + 
+                 '<br>Address: ' + theater.address + 
+                 '<br>PhoneNumber: ' + theater.phoneNumber
         })
 
         const marker = new google.maps.Marker({
