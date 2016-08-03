@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import TheaterDetails from './components/TheaterDetails.js'
 import Header from './components/Header.js'
 import Main from './components/Main.js'
 import Footer from './components/Footer.js'
@@ -10,8 +11,9 @@ const DEFAULT_CENTER = { lat: 37.804444, lng: -122.270833 }
 
 class Root extends Component {
   constructor( props ) {
-    super( props )
 
+    super( props )
+    
     this.state = {
       zipCode: '',
       theaters: [],
@@ -60,10 +62,10 @@ class Root extends Component {
   }
 }
 
-class App extends Component {
+ class App extends Component {
   render() {
-    return <Root />
-  }
-}
+    return <TheaterDetails id= "f8500f7c65c32c2f" />
+   }
+ }
 
-export default App;
+ export default App;
