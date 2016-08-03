@@ -8,15 +8,21 @@ import TheaterWindow from './TheaterWindow.js'
 
 class Main extends Component {
   componentDidMount() {
+    console.log('componentDidMount')
     this.updateMap()
   }
 
   componentDidUpdate( previousProps, previousState ) {
+    console.log('componentDidUpdate')
     this.updateMap()
   }
 
   updateMap() {
-    const element = document.querySelector( '.main' )
+    if( this.props === undefined ) {
+      return
+    }
+
+    const element = document.querySelector( '.map' )
     const options = {
       center: this.props.center,
       scaleControl: true,
@@ -41,12 +47,23 @@ class Main extends Component {
 
         marker.addListener( 'click', () => infoWindow.open( map, marker ))
       })
+
+      const recenter = () => {
+        console.log( recenter )
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+      }
+
+      google.maps.event.addDomListener(element, 'load', this.updateMap );
+      google.maps.event.addDomListener(element, "resize", recenter.bind(this));
     })
   }
 
   render() {
+    console.log( 'render', this.props )
     return (
-      <div className="main"></div>
+      <div className="map"></div>
     )
   }
 }

@@ -14,7 +14,8 @@ class Root extends Component {
 
     this.state = {
       zipCode: '',
-      theaters: []
+      theaters: [],
+      center: DEFAULT_CENTER
     }
   }
 
