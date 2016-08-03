@@ -6,8 +6,16 @@ import Main from './components/Main.js'
 import Footer from './components/Footer.js'
 
 class App extends Component {
+  constructor( props ) {
+    super( props ) 
+
+    this.state = {
+      zipCode: '',
+      theaters: []
+    }
+  }
+
   zipcodeSubmitted( zipCode ) { 
-    console.log(zipCode)
     const url = `http://localhost:3002/theaters/${zipCode}`
     const options = {
       mode: 'cors',
@@ -19,7 +27,7 @@ class App extends Component {
 
     fetch( url, options )
       .then( response => response.json() )
-      .then( json => console.log( json ))
+      .then( theaters => this.setState({ zipCode, theaters }))
       .catch( error => console.log( error ))
   }
 
@@ -27,7 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header onZipCode={this.zipcodeSubmitted.bind(this)} />
-        <Main />
+        <Main {...this.state} />
         <Footer />
       </div>
     );
