@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import ReactDOMServer from 'react-dom/server'
 import GoogleMapsLoader from 'google-maps'
 
 GoogleMapsLoader.KEY = 'AIzaSyAM7VdvORTJeo8DihlqK4wT1dHCF6m2VpY'
+
+import TheaterWindow from './TheaterWindow.js'
 
 class Main extends Component {
   componentDidMount() {
@@ -15,20 +18,19 @@ class Main extends Component {
   updateMap() {
     const element = document.querySelector( '.main' )
     const options = {
-      center: { lat: 37.804444, lng: -122.270833 },
+      center: this.props.center,
       scaleControl: true,
-      zoom: 10,
-      draggable: false
+      zoom: 12
     }
 
     GoogleMapsLoader.load( google => { 
       const map = new google.maps.Map( element, options )
+
       console.log(this.props.theaters)
+      
       this.props.theaters.forEach( theater => {
         const infoWindow = new google.maps.InfoWindow({
-        content: 'Name: ' + theater.name + 
-                 '<br>Address: ' + theater.address + 
-                 '<br>PhoneNumber: ' + theater.phoneNumber
+          content: ReactDOMServer.renderToString( <TheaterWindow {...theater} /> )
         })
 
         const marker = new google.maps.Marker({

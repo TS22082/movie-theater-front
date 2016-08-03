@@ -5,7 +5,10 @@ import Header from './components/Header.js'
 import Main from './components/Main.js'
 import Footer from './components/Footer.js'
 
-class App extends Component {
+const DEFAULT_ZIP = '94607'
+const DEFAULT_CENTER = { lat: 37.804444, lng: -122.270833 }
+
+class Root extends Component {
   constructor( props ) {
     super( props ) 
 
@@ -15,8 +18,14 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    this.zipcodeSubmitted( DEFAULT_ZIP )
+  }
+
   zipcodeSubmitted( zipCode ) { 
     const url = `http://localhost:3002/theaters/${zipCode}`
+    const zipUrl = `http://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}`
+
     const options = {
       mode: 'cors',
       headers: {
@@ -27,7 +36,15 @@ class App extends Component {
 
     fetch( url, options )
       .then( response => response.json() )
-      .then( theaters => this.setState({ zipCode, theaters }))
+      .then( theaters => {
+        fetch( zipUrl, { mode: 'cors' } )
+          .then( response => response.json() )
+          .then( geocode => {
+            const center = (( geocode.results[ 0 ] || {} ).geometry || {} ).location || DEFAULT_CENTER
+
+            this.setState({ zipCode, theaters, center })   
+          })
+      })
       .catch( error => console.log( error ))
   }
 
@@ -39,6 +56,12 @@ class App extends Component {
         <Footer />
       </div>
     );
+  }
+}
+
+class App extends Component {
+  render() {
+    return <Root />
   }
 }
 
