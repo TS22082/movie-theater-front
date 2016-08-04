@@ -28,31 +28,34 @@ class TheaterDetails extends Component {
       .then( theater => this.setState({...theater}) )
       .catch( error => console.log( error ))
   }
-    
 
+  movieList() {
+    return this.state.movies.map( (movie, index) => {
+      return (
+        <Row key={`m-${index}`}>
+          <Movie {...movie} />
+        </Row>
+      )
+    })
+  }
+    
   render() {
     console.log('Whats the state: ', this.state)
 
     return (
       <Container>
         <Row>
-          <Column columns="8">
-            <h1>{ this.state.name }</h1>
-          </Column>
-          <Column columns="4">
-            <h1>{ this.state.address }</h1>
-          </Column>
-        </Row>
-        <Row>
           <Column columns="12">
-            {this.state.movies.map( (movie, index) => <Movie {...movie} key={`m-${index}`} /> )}
+            <div className="header">
+              <h1>{this.state.name}</h1>
+              <h3>{this.state.address} | {this.state.phoneNumber}</h3>
+            </div>
           </Column>
         </Row>
-      </Container>    
-    );
+        {this.movieList()}
+      </Container>
+    )
   }
 }
-
-
 
 export default TheaterDetails

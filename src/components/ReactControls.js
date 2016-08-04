@@ -17,3 +17,9 @@ export class Container extends Component {
     return <div className="container">{this.props.children}</div>
   }
 }
+
+export class Jumbo extends Component {
+  render() {
+    return <div className="jumbotron">{this.props.children}</div>
+  }
+}
