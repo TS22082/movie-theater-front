@@ -10,11 +10,12 @@ const DEFAULT_CENTER = { lat: 37.804444, lng: -122.270833 }
 
 class Root extends Component {
   constructor( props ) {
-    super( props ) 
+    super( props )
 
     this.state = {
       zipCode: '',
-      theaters: []
+      theaters: [],
+      center: DEFAULT_CENTER
     }
   }
 
@@ -22,7 +23,7 @@ class Root extends Component {
     this.zipcodeSubmitted( DEFAULT_ZIP )
   }
 
-  zipcodeSubmitted( zipCode ) { 
+  zipcodeSubmitted( zipCode ) {
     const url = `http://localhost:3002/theaters/${zipCode}`
     const zipUrl = `http://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}`
 
@@ -42,7 +43,7 @@ class Root extends Component {
           .then( geocode => {
             const center = (( geocode.results[ 0 ] || {} ).geometry || {} ).location || DEFAULT_CENTER
 
-            this.setState({ zipCode, theaters, center })   
+            this.setState({ zipCode, theaters, center })
           })
       })
       .catch( error => console.log( error ))
