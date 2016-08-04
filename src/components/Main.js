@@ -22,11 +22,6 @@ class Main extends Component {
       this.google = google
       this.map = new this.google.maps.Map( this.element, this.mapOptions() )
 
-      // The problem was that we were doing too many things - firing updateMap
-      // on load, which was giving us an extra updateMap call since the component
-      // was firing updateMap on didMount
-      // As well, we were triggering the resize event *in* the recenter function
-      // which was causing an infinite loop
       this.google.maps.event.addDomListener( this.element, 'resize', this.recenter.bind(this) )
 
       this.updateMap()
