@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './Header.js'
 import Main from './Main.js'
+import TheaterList from './TheaterList.js'
 import Footer from './Footer.js'
 
 const DEFAULT_ZIP = '94607'
@@ -15,7 +16,8 @@ export default class Root extends Component {
     this.state = {
       zipCode: '',
       theaters: [],
-      center: DEFAULT_CENTER
+      center: DEFAULT_CENTER,
+      view: 'toggle_map'
     }
   }
 
@@ -49,12 +51,25 @@ export default class Root extends Component {
       .catch( error => console.log( error ))
   }
 
+  toggle( type ) {
+    this.setState({ view: type })
+  }
+
+  selectChild() {
+    if( this.state.view === 'toggle_map' ) {
+      return <Main {...this.state} history={this.props.history} />
+    } else {
+      return <TheaterList {...this.state} history={this.props.history} />
+    }
+  }
+
   render() {
     console.log( this.props )
     return (
       <div className="App">
-        <Header onZipCode={this.zipcodeSubmitted.bind(this)} />
-        <Main {...this.state} history={this.props.history} />
+        <Header onZipCode={this.zipcodeSubmitted.bind(this)} 
+          onToggle={this.toggle.bind(this)} />
+        {this.selectChild()}
         <Footer />
       </div>
     );

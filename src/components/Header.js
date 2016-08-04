@@ -7,7 +7,7 @@ class Header extends Component {
     
     return (
       <div className="header">
-        <ZipcodeForm onZipCode={this.props.onZipCode} />
+        <ZipcodeForm onZipCode={this.props.onZipCode} onToggle={this.props.onToggle} />
       </div>
 
     )
