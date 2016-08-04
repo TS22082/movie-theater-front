@@ -11,14 +11,6 @@ export default class Movie extends Component {
 
       return <p key={`st-${index}`}><a href={url} target="_blank">{showtime}</a></p>
     })
-
-    // let result = []
-    // for (var time of this.props.showtimes) {
-    //   var url = this.props.showtime_tickets[time]
-    //   result.push( `<a href="${url}">${time}</a>` )
-    // }
-
-    // return result
   }
 
   render() {
