@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Column, Row, Container } from './ReactControls'
-
+import '../stylesheet/theater_details.css'
 import Movie from './Movie'
 
 class TheaterDetails extends Component {
