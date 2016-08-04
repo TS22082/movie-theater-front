@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactDOMServer from 'react-dom/server'
+import ReactDOM from 'react-dom'
 import GoogleMapsLoader from 'google-maps'
 
 GoogleMapsLoader.KEY = 'AIzaSyAM7VdvORTJeo8DihlqK4wT1dHCF6m2VpY'
@@ -7,61 +7,69 @@ GoogleMapsLoader.KEY = 'AIzaSyAM7VdvORTJeo8DihlqK4wT1dHCF6m2VpY'
 import TheaterWindow from './TheaterWindow.js'
 
 class Main extends Component {
+  constructor( props ) {
+    super( props )
+
+    this.element = null
+    this.map = null
+    this.google = null
+  }
+
   componentDidMount() {
-    console.log('componentDidMount')
-    this.updateMap()
+    this.element = document.querySelector( '.map' )
+
+    GoogleMapsLoader.load( google => {
+      this.google = google
+      this.map = new this.google.maps.Map( this.element, this.mapOptions() )
+
+      // The problem was that we were doing too many things - firing updateMap
+      // on load, which was giving us an extra updateMap call since the component
+      // was firing updateMap on didMount
+      // As well, we were triggering the resize event *in* the recenter function
+      // which was causing an infinite loop
+      this.google.maps.event.addDomListener( this.element, 'resize', this.recenter.bind(this) )
+
+      this.updateMap()
+    })
   }
 
   componentDidUpdate( previousProps, previousState ) {
-    console.log('componentDidUpdate')
     this.updateMap()
   }
 
-  updateMap() {
-    if( this.props === undefined ) {
-      return
-    }
-
-    const element = document.querySelector( '.map' )
-    const options = {
+  mapOptions() {
+    return {
       center: this.props.center,
       scaleControl: true,
       zoom: 12
     }
+  }
 
-    GoogleMapsLoader.load( google => { 
-      const map = new google.maps.Map( element, options )
+  recenter() {
+    this.map.setCenter( this.props.center )
+  }
 
-      console.log(this.props.theaters)
-      
-      this.props.theaters.forEach( theater => {
-        const infoWindow = new google.maps.InfoWindow({
-          content: ReactDOMServer.renderToString( <TheaterWindow {...theater} /> )
-        })
+  updateMap() {
+    this.recenter()
 
-        const marker = new google.maps.Marker({
-          position: theater.position,
-          map,
-          title: theater.name
-        })
+    this.props.theaters.forEach( theater => {
+      const infoWindow = new this.google.maps.InfoWindow()
 
-        marker.addListener( 'click', () => infoWindow.open( map, marker ))
+      const infoDiv = document.createElement( 'div' )
+      ReactDOM.render( <TheaterWindow />, infoDiv )
+      infoWindow.setContent( infoDiv )
+
+      const marker = new this.google.maps.Marker({
+        position: theater.position,
+        map: this.map,
+        title: theater.name
       })
 
-      const recenter = () => {
-        console.log( recenter )
-        var center = map.getCenter();
-        google.maps.event.trigger(map, "resize");
-        map.setCenter(center);
-      }
-
-      google.maps.event.addDomListener(element, 'load', this.updateMap );
-      google.maps.event.addDomListener(element, "resize", recenter.bind(this));
+      marker.addListener( 'click', () => infoWindow.open( this.map, marker ))
     })
   }
 
   render() {
-    console.log( 'render', this.props )
     return (
       <div className="map"></div>
     )
