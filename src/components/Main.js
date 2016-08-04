@@ -51,7 +51,7 @@ class Main extends Component {
       const infoWindow = new this.google.maps.InfoWindow()
 
       const infoDiv = document.createElement( 'div' )
-      ReactDOM.render( <TheaterWindow />, infoDiv )
+      ReactDOM.render( <TheaterWindow {...theater} history={this.props.history} />, infoDiv )
       infoWindow.setContent( infoDiv )
 
       const marker = new this.google.maps.Marker({
