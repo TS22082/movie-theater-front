@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
+import { Column, Row, Container } from './ReactControls'
 
 class TheaterDetails extends Component {
-     
-    const url = `http://localhost:3002/theaters/id/${id}`
-    const id = this.props.id
+  constructor( props ){
+    super( props )
+
+    this.state = {
+      name: ''
+    }
+  }
+
+
+  componentDidMount(){
+    const url = `http://localhost:3002/theaters/id/${this.props.id}`
     const options = {
       mode: 'cors',
       headers: {
@@ -14,19 +23,29 @@ class TheaterDetails extends Component {
 
     fetch( url, options )
       .then( response => response.json() )
-      .then( theaters => {
-            this.setState({ id, theaters, center })   
-          })
-      
+      .then( theater => this.setState({...theater}) )
       .catch( error => console.log( error ))
-  
+  }
+    
 
   render() {
+    console.log('Whats the state: ', this.state)
+
     return (
-      <div>
-        {this.props.id}
-      </div>
+      <Container>
+        <Row>
+          <Column columns="8">
+            <h1>{ this.state.name }</h1>
+          </Column>
+          <Column columns="4">
+            <h1>{ this.state.name }</h1>
+          </Column>
+        </Row>
+      </Container>    
     );
   }
 }
+
+
+
 export default TheaterDetails

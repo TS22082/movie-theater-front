@@ -64,7 +64,7 @@ class Root extends Component {
 
  class App extends Component {
   render() {
-    return <TheaterDetails id= "f8500f7c65c32c2f" />
+    return <TheaterDetails id="f8500f7c65c32c2f" />
    }
  }
 
