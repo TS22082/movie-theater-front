@@ -12,19 +12,19 @@ When I click on trailer it would toggle a window that would play the video from 
 
 ## Goals
 
-- [ ] Integrate Google API
-- [ ] Integrate showtime API
-- [ ] Use React and node
-- [ ] Home page displays a map and field with zip code
-- [ ] Be able to search theaters by zip code
-- [ ] When zip code entered, map centers on zip and displays pins for theater locations
+- [X] Integrate Google API
+- [X] Integrate showtime API
+- [X] Use React and node
+- [X] Home page displays a map and field with zip code
+- [X] Be able to search theaters by zip code
+- [X] When zip code entered, map centers on zip and displays pins for theater locations
 - [ ] When clicking on pin, theater address and link to theater detail page displayed
 - [ ] Be able to toggle between list and map theater
 - [ ] Be able to see the list of the movies of specified theater
 - [ ] Theater detail page lists theater information (name and address) and movie listings
 - [ ] Movie listing includes title, rating, genres, runtime, imdb link if available, trailer link if available, showtimes for today (link to purchase site if link available)
 - [ ] Clicking on trailer link (when available) shows trailer modal (if embeddable)
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [X] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 
 <!-- LICENSE -->
