@@ -1,6 +1,6 @@
 ## Description
 Create a web app that connects to Google Maps and showtimes API with a search bar that looks specifically for movie theaters in the Bay Area. Use HTML, CSS, Javascript, JQuery and React.
-
+[Link to back end repository](https://github.com/TS22082/movie-theater-back)
 ## User Story
 
 As a user, When I go to the fist page I want to be able to see a map with the nearest theaters around me based on the zip code that I enter. Also I should be able to switch to list view.
