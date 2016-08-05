@@ -14,17 +14,17 @@ export default class Movie extends Component {
   }
 
   render() {
-      return (
-        <Container>
-          <Jumbo>
-            <Row>
-              <Column columns="6">
-                <div className="main_info">
-                  <h2> {this.props.name} </h2>
-                  <p>rating: {this.props.rating} </p>
-                  <p>genre: {this.props.genre} </p>
-                  <p>runtime: {this.props.runtime} </p>
-                </div>
+    return (
+      <Container>
+        <Jumbo>
+          <Row>
+            <Column columns="6">
+              <div className="main_info">
+                <h2> {this.props.name} </h2>
+                <p>rating: {this.props.rating} </p>
+                <p>genre: {this.props.genre} </p>
+                <p>runtime: {this.props.runtime} </p>
+              </div>
               </Column>
               <Column columns="3">
                 <div className="main_info">
@@ -33,14 +33,12 @@ export default class Movie extends Component {
               </Column>
               <Column columns="3">
                 <div className="main_info">
-                  <a href={this.props.trailer} target="_blank">View Trailer</a>
-                </div>
-              </Column>          
-            </Row>
-          </Jumbo>
-        </Container>
-  
-      
+                <a href={this.props.trailer} target="_blank" className="">View trailer</a>          
+              </div>
+            </Column>          
+          </Row>
+        </Jumbo>
+      </Container>
     )
   }
 }
