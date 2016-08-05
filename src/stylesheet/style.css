@@ -129,6 +129,68 @@
   width: 100px;
 }
 
+html, body, #googleMap {
+  height: 1000px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0px;
+    opacity: 0.85;
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.menu {
+  display:block;
+  menu-width:250px;
+}
+
+.map-background {
+  background: url('./map-background.png') fixed;
+}
+
+.jumbotron {
+  background-color: #FFFFFF
+}
+
+.comic-modal-one {
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+
+.comic-modal-one.show-modal {
+  display: block;
+}
+
+.comic-modal-one div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.comic-modal-one div div {
+  margin: auto;
+  width: 560px;
+  height: 315px;
+}
+
+.map-background .zip-code-form {
+  display: none;
+}
+
+
 
 
 
