@@ -43,7 +43,9 @@ class TheaterDetails extends Component {
     console.log('Whats the state: ', this.state)
 
     return (
+
       <Container>
+        <div className="comic-modal-one" id="trailer-modal"></div>
         <Row>
           <Column columns="12">
             <div className="header">

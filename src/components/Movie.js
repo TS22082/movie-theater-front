@@ -13,6 +13,26 @@ export default class Movie extends Component {
     })
   }
 
+  embedLink() {
+    const { trailer } = this.props
+
+    const watch = 'http://www.youtube.com/watch?v='
+    const embed = 'http://www.youtube.com/embed/'
+
+    return trailer.replace( watch, embed )
+  }
+
+  toggleTrailer( event ) {
+    const element = document.querySelector( '#trailer-modal' )
+
+    element.innerHTML =
+      `<div><div><iframe src=${this.embedLink()} width="560" height="315"
+        frameBorder="0" allowFullScreen>
+      </iframe></div></div>`
+
+    element.classList.add( 'show-modal' )
+  }
+
   render() {
     return (
       <Container>
@@ -33,12 +53,15 @@ export default class Movie extends Component {
               </Column>
               <Column columns="3">
                 <div className="main_info">
-                <a href={this.props.trailer} target="_blank" className="">View trailer</a>          
-              </div>
-            </Column>          
-          </Row>
-        </Jumbo>
-      </Container>
+                  <button className="btn btn-danger"
+                  onClick={this.toggleTrailer.bind(this)}>Trailer</button>    
+                </div>
+              </Column>          
+            </Row>
+          </Jumbo>
+        </Container>
+  
+      
     )
   }
 }
