@@ -38,6 +38,13 @@ class TheaterDetails extends Component {
       )
     })
   }
+
+    hideModal( event ) {
+    const element = document.querySelector( '#trailer-modal' )
+
+    element.classList.remove( 'show-modal' )
+    element.innerHTML = ''
+  }
     
   render() {
     console.log('Whats the state: ', this.state)
@@ -45,7 +52,7 @@ class TheaterDetails extends Component {
     return (
 
       <Container>
-        <div className="comic-modal-one" id="trailer-modal"></div>
+        <div className="comic-modal-one" id="trailer-modal" onClick={this.hideModal.bind(this)}></div>
         <Row>
           <Column columns="12">
             <div className="header">
